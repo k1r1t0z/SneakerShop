@@ -1,6 +1,6 @@
 package com.example.sneakershop.service;
 
-import com.example.sneakershop.domain.Sneakers;
+import com.example.sneakershop.entity.Sneakers;
 import com.example.sneakershop.repository.SneakersRepository;
 import org.springframework.stereotype.Service;
 

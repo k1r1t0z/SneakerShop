@@ -1,6 +1,6 @@
 package com.example.sneakershop.controller;
 
-import com.example.sneakershop.domain.Sneakers;
+import com.example.sneakershop.entity.Sneakers;
 import com.example.sneakershop.service.SneakersService;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.example.sneakershop.domain;
+package com.example.sneakershop.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
