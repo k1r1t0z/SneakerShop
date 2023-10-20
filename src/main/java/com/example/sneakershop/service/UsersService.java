@@ -36,6 +36,10 @@ public class UsersService {
         return null;
     }
 
+    public Users getUserByName(String name) {
+        return usersRepository.findUsersByName(name);
+    }
+
     public void deleteUsers(Long id) {
         usersRepository.deleteById(id);
     }
