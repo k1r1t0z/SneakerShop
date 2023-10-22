@@ -29,15 +29,16 @@ public class UsersService {
     public Users updateUsers(Long id, Users updateUsers) {
         Users existingUsers = usersRepository.findById(id).orElse(null);
         if(existingUsers != null) {
-            existingUsers.setName(updateUsers.getName());
+            existingUsers.setFirstName(updateUsers.getFirstName());
+            existingUsers.setLastName(updateUsers.getLastName());
             existingUsers.setEmail(updateUsers.getEmail());
             return usersRepository.save(existingUsers);
         }
         return null;
     }
 
-    public Users getUserByName(String name) {
-        return usersRepository.findUsersByName(name);
+    public Users getUserByLogin(String login) {
+        return usersRepository.findUsersByLogin(login);
     }
 
     public void deleteUsers(Long id) {

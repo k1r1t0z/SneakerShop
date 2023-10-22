@@ -2,6 +2,7 @@ package com.example.sneakershop.controller;
 
 import com.example.sneakershop.entity.Users;
 import com.example.sneakershop.service.UsersService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UsersController {
-    UsersService usersService;
+    private final UsersService usersService;
 
     public UsersController(UsersService usersService) {
         this.usersService = usersService;
@@ -42,9 +44,15 @@ public class UsersController {
         return usersService.updateUsers(id, updatedUsers);
     }
 
-    @GetMapping("/name/{name}")
-    public Users getUserByName(@PathVariable String name){
-        return usersService.getUserByName(name);
+    @GetMapping("/search")
+    public ResponseEntity<Users> getUserByLogin(@RequestParam("login") String login) {
+        Users user = usersService.getUserByLogin(login);
+
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/delete/{id}")
