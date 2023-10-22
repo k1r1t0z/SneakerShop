@@ -55,6 +55,11 @@ public class UsersController {
         }
     }
 
+    @PostMapping("/change_password")
+    public Users changePassword(@RequestParam String login, @RequestParam String newPassword) {
+        return usersService.changePassword(login, newPassword);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteUsers(@PathVariable Long id) {
         usersService.deleteUsers(id);

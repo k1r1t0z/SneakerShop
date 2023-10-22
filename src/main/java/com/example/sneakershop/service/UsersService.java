@@ -41,6 +41,17 @@ public class UsersService {
         return usersRepository.findUsersByLogin(login);
     }
 
+    public Users changePassword(String username, String newPassword) {
+        Users user = usersRepository.findUsersByLogin(username);
+
+        if (user != null) {
+            user.setPassword(newPassword);
+            return usersRepository.save(user);
+        } else {
+            return null;
+        }
+    }
+
     public void deleteUsers(Long id) {
         usersRepository.deleteById(id);
     }
