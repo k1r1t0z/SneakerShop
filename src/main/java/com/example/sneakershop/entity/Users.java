@@ -17,8 +17,9 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_generator")
     private Long id;
     private String firstName;
-    private String email;
-    private String password;
     private String lastName;
-    private String login;
+    private String gender;
+    private String age;
+    private Long telephoneNumber;
+    private String email;
 }

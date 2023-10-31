@@ -45,19 +45,14 @@ public class UsersController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Users> getUserByLogin(@RequestParam("login") String login) {
-        Users user = usersService.getUserByLogin(login);
+    public ResponseEntity<Users> getUserByLastName(@RequestParam("lastName") String lastName) {
+        Users user = usersService.getUserByLastName(lastName);
 
         if (user != null) {
             return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @PostMapping("/change_password")
-    public Users changePassword(@RequestParam String login, @RequestParam String newPassword) {
-        return usersService.changePassword(login, newPassword);
     }
 
     @DeleteMapping("/delete/{id}")

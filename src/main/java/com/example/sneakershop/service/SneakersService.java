@@ -37,6 +37,20 @@ public class SneakersService {
         return null;
     }
 
+    public Sneakers findByBrand(String brand) {
+        return sneakersRepository.findByBrand(brand);
+    }
+
+    public Sneakers addDescription (Long id , String description) {
+        Sneakers sneakers = sneakersRepository.findById(id).orElse(null);
+
+        if(sneakers != null) {
+            sneakers.setDescription(description);
+            return sneakersRepository.save(sneakers);
+        }
+        return null;
+    }
+
     public void deleteSneakers(Long id) {
         sneakersRepository.deleteById(id);
     }

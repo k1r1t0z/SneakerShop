@@ -35,6 +35,16 @@ public class SneakersController {
         return sneakersService.updateSneakers(id, updatedSneakers);
     }
 
+    @GetMapping("/search/{brand}")
+    public Sneakers getByBrand(@PathVariable String brand){
+        return sneakersService.findByBrand(brand);
+    }
+
+    @PostMapping("/add_description")
+    public Sneakers addDescription(@RequestParam Long id, @RequestParam String description) {
+        return sneakersService.addDescription(id, description);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteSneakers(@PathVariable Long id) {
         sneakersService.deleteSneakers(id);

@@ -31,25 +31,17 @@ public class UsersService {
         if(existingUsers != null) {
             existingUsers.setFirstName(updateUsers.getFirstName());
             existingUsers.setLastName(updateUsers.getLastName());
+            existingUsers.setGender(updateUsers.getGender());
+            existingUsers.setAge(updateUsers.getAge());
+            existingUsers.setTelephoneNumber(updateUsers.getTelephoneNumber());
             existingUsers.setEmail(updateUsers.getEmail());
             return usersRepository.save(existingUsers);
         }
         return null;
     }
 
-    public Users getUserByLogin(String login) {
-        return usersRepository.findUsersByLogin(login);
-    }
-
-    public Users changePassword(String username, String newPassword) {
-        Users user = usersRepository.findUsersByLogin(username);
-
-        if (user != null) {
-            user.setPassword(newPassword);
-            return usersRepository.save(user);
-        } else {
-            return null;
-        }
+    public Users getUserByLastName(String lastName) {
+        return usersRepository.findUsersByLastName(lastName);
     }
 
     public void deleteUsers(Long id) {

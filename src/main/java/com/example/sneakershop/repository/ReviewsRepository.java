@@ -1,10 +1,10 @@
 package com.example.sneakershop.repository;
 
-import com.example.sneakershop.entity.Sneakers;
+import com.example.sneakershop.entity.Reviews;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SneakersRepository extends JpaRepository<Sneakers, Long> {
-    Sneakers findByBrand(String brand);
+public interface ReviewsRepository extends JpaRepository<Reviews, Long> {
+
 }
