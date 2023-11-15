@@ -16,4 +16,7 @@ public class Sneakers {
     private Integer size;
     private String description;
     private Integer price;
+    @Lob
+    private byte[] image;
+    private Integer availability;
 }

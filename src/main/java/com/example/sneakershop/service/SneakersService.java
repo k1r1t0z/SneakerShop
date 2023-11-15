@@ -3,7 +3,10 @@ package com.example.sneakershop.service;
 import com.example.sneakershop.entity.Sneakers;
 import com.example.sneakershop.repository.SneakersRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -41,6 +44,10 @@ public class SneakersService {
         return sneakersRepository.findByBrand(brand);
     }
 
+    public Sneakers findBySize(Integer size) {
+        return sneakersRepository.findBySize(size);
+    }
+
     public Sneakers addDescription (Long id , String description) {
         Sneakers sneakers = sneakersRepository.findById(id).orElse(null);
 
@@ -49,6 +56,33 @@ public class SneakersService {
             return sneakersRepository.save(sneakers);
         }
         return null;
+    }
+
+    public Sneakers uploadImage(Long sneakersId, MultipartFile file) throws IOException {
+        Sneakers sneakers = sneakersRepository.findById(sneakersId).orElse(null);
+
+        if (sneakers != null && !file.isEmpty()) {
+            sneakers.setImage(file.getBytes());
+            return sneakersRepository.save(sneakers);
+        }
+
+        return null;
+    }
+
+    public Sneakers updateAvailability(Long sneakersId, int newAvailability) {
+        Sneakers sneakers = sneakersRepository.findById(sneakersId).orElse(null);
+
+        if (sneakers != null) {
+            sneakers.setAvailability(newAvailability);
+            return sneakersRepository.save(sneakers);
+        }
+
+        return null;
+    }
+
+    @Transactional
+    public List<Sneakers> findByPriceRange(Integer minPrice, Integer maxPrice) {
+        return sneakersRepository.findByPriceBetween(minPrice, maxPrice);
     }
 
     public void deleteSneakers(Long id) {
